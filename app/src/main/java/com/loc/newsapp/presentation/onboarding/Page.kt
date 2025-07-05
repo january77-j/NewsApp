@@ -4,6 +4,7 @@ import android.icu.text.CaseMap.Title
 import android.icu.text.CaseMap.toTitle
 import android.util.EventLogTags.Description
 import androidx.annotation.DrawableRes
+import com.loc.newsapp.R
 
 data class Page(
     val title: String,
@@ -18,12 +19,12 @@ val pages = listOf(
         title = "Lorem Ipsum is simply dummy",
         description = "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
         image = R.drawable.onboarding1
-    )
+    ),
     Page(
     title = "Lorem Ipsum is simply dummy",
     description = "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
     image = R.drawable.onboarding2
-    )
+    ),
     Page(
         title = "Lorem Ipsum is simply dummy",
         description = "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
