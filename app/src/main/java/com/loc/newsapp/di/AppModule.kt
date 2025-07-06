@@ -3,7 +3,8 @@ package com.loc.newsapp.di
 import android.app.Application
 import com.loc.newsapp.data.manager.LocalUserManagerImpl
 import com.loc.newsapp.domain.manager.LocalUserManager
-import com.loc.newsapp.domain.usecases.AppEntryUseClass
+import com.loc.newsapp.domain.usecases.AppEntryUseCases
+
 import com.loc.newsapp.domain.usecases.ReadAppEntry
 import com.loc.newsapp.domain.usecases.SaveAppEntry
 import dagger.Module
@@ -27,7 +28,7 @@ object AppModule {
     @Singleton
     fun provideAppEntryUseCases(
         localUserManager: LocalUserManager
-    ) = AppEntryUseClass(
+    ) = AppEntryUseCases(
         readAppEntry = ReadAppEntry(localUserManager),
         saveAppEntry = SaveAppEntry(localUserManager)
     )
