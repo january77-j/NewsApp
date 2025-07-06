@@ -1,3 +1,6 @@
 package com.loc.newsapp.domain.usecases
 
-data class AppEntryUseClass()
+data class AppEntryUseClass(
+    val readAppEntry: ReadAppEntry,
+    val saveAppEntry: SaveAppEntry
+)
