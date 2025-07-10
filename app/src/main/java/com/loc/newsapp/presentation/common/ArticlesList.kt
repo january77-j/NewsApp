@@ -19,6 +19,30 @@ import com.loc.newsapp.presentation.onboarding.Dimens.ExtraSmallPadding2
 import com.loc.newsapp.presentation.onboarding.Dimens.MediumPadding1
 import com.loc.newsapp.ui.theme.NewsAppTheme
 
+
+@Composable
+fun ArticlesList(
+    modifier: Modifier = Modifier,
+    articles: List<Article>,
+    onClick: (Article) -> Unit
+) {
+
+
+    LazyColumn(
+        modifier = modifier.fillMaxSize(),
+        verticalArrangement = Arrangement.spacedBy(MediumPadding1),
+        contentPadding = PaddingValues(all = ExtraSmallPadding2)
+    ) {
+        items(count = articles.size) {
+            val article = articles[it]
+            ArticleCard(article = article, onClick = {
+                onClick(article)
+            })
+        }
+    }
+
+}
+
 @Composable
 fun ArticlesList(
     modifier: Modifier = Modifier,
@@ -27,23 +51,23 @@ fun ArticlesList(
 ) {
     val handlePagingResult = handlePagingResult(articles = articles)
     if (handlePagingResult) {
+
+
         LazyColumn(
-            modifier = Modifier.fillMaxSize(),
+            modifier = modifier.fillMaxSize(),
             verticalArrangement = Arrangement.spacedBy(MediumPadding1),
             contentPadding = PaddingValues(all = ExtraSmallPadding2)
-        ){
-            items(count = articles.itemCount){
-                articles[it]?.let{
-                    ArticleCard(article = it, onClick = {
-                        onClick(it)
-                    })
+        ) {
+            items(count = articles.itemCount) {
+                articles[it]?.let {
+                    ArticleCard(article = it, onClick = { onClick(it) })
                 }
             }
-
         }
-    }
 
+    }
 }
+
 
 @Composable
 fun handlePagingResult(
@@ -87,7 +111,7 @@ private fun ShimmerEffect() {
 @Preview(showBackground = true)
 @Preview(showBackground = true, uiMode = UI_MODE_NIGHT_YES)
 @Composable
-fun ShimmerEffectPreview(){
+fun ShimmerEffectPreview() {
     NewsAppTheme {
         ShimmerEffect()
     }
