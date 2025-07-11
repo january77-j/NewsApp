@@ -2,7 +2,6 @@ package com.loc.newsapp.di
 
 import android.app.Application
 import androidx.room.Room
-import androidx.room.RoomDatabase
 import com.loc.newsapp.data.local.NewsDao
 import com.loc.newsapp.data.local.NewsDatabase
 import com.loc.newsapp.data.local.NewsTypeConvertor
@@ -19,6 +18,7 @@ import com.loc.newsapp.domain.usecases.app_entry.news.DeleteArticle
 import com.loc.newsapp.domain.usecases.app_entry.news.GetNews
 import com.loc.newsapp.domain.usecases.app_entry.news.NewsUseCases
 import com.loc.newsapp.domain.usecases.app_entry.news.SearchNews
+import com.loc.newsapp.domain.usecases.app_entry.news.SelectArticle
 import com.loc.newsapp.domain.usecases.app_entry.news.SelectArticles
 import com.loc.newsapp.domain.usecases.app_entry.news.UpsertArticle
 import com.loc.newsapp.util.Constants.BASE_URL
@@ -63,8 +63,9 @@ object AppModule {
     @Provides
     @Singleton
     fun provideNewsRepository(
-        newsApi: NewsApi
-    ): NewsRepository = NewsRepositoryImpl(newsApi)
+        newsApi: NewsApi,
+        newsDao: NewsDao
+    ): NewsRepository = NewsRepositoryImpl(newsApi, newsDao)
 
     @Provides
     @Singleton
@@ -75,9 +76,10 @@ object AppModule {
         return NewsUseCases(
             getNews = GetNews(newsRepository),
             searchNews = SearchNews(newsRepository),
-            upsertArticle = UpsertArticle(newsDao),
-            deleteArticle = DeleteArticle(newsDao),
-            selectArticles = SelectArticles(newsDao)
+            upsertArticle = UpsertArticle(newsRepository),
+            deleteArticle = DeleteArticle(newsRepository),
+            selectArticles = SelectArticles(newsRepository),
+            selectArticle = SelectArticle(newsRepository)
         )
     }
 

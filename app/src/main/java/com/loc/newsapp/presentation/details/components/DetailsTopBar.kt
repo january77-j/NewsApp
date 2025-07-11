@@ -62,12 +62,6 @@ fun DetailsTopBar(
             }
             IconButton(onClick = onBrowsingClick) {
                 Icon(
-                    imageVector = Icons.Default.Search,
-                    contentDescription = null
-                )
-            }
-            IconButton(onClick = onBackClick) {
-                Icon(
                     painter = painterResource(id = R.drawable.ic_network),
                     contentDescription = null
                 )

@@ -1,7 +1,6 @@
 package com.loc.newsapp.presentation.details
 
 import android.content.Intent
-import android.content.res.Configuration
 import android.content.res.Configuration.UI_MODE_NIGHT_YES
 import android.net.Uri
 import androidx.compose.foundation.layout.Column
@@ -21,14 +20,12 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.room.util.TableInfo
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
 import com.loc.newsapp.R
 import com.loc.newsapp.domain.model.Article
 import com.loc.newsapp.domain.model.Source
 import com.loc.newsapp.presentation.details.components.DetailsTopBar
-import com.loc.newsapp.presentation.nvgraph.Route
 import com.loc.newsapp.presentation.onboarding.Dimens.ArticleImageHeight
 import com.loc.newsapp.presentation.onboarding.Dimens.MediumPadding1
 import com.loc.newsapp.ui.theme.NewsAppTheme
@@ -65,7 +62,7 @@ fun DetailsScreen(
                     }
                 }
             },
-            onBookmarkClick = { event(DetailsEvent.SaveArticle) },
+            onBookmarkClick = { event(DetailsEvent.UpsertDeleteArticle(article)) },
             onBackClick = navigateUp
         )
         LazyColumn(
@@ -100,7 +97,7 @@ fun DetailsScreen(
                 )
                 Text(
                     text = article.content,
-                    style = MaterialTheme.typography.displaySmall,
+                    style = MaterialTheme.typography.bodyMedium,
                     color = colorResource(
                         id = R.color.body
                     )

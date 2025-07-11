@@ -19,7 +19,7 @@ import com.loc.newsapp.presentation.onboarding.Dimens.MediumPadding1
 fun SearchScreen(
     state: SearchState,
     event: (SearchEvent) -> Unit,
-    navigate: (String) -> Unit
+    navigateToDetails: (Article) -> Unit
 ) {
     Column(
         modifier = Modifier
@@ -42,7 +42,7 @@ fun SearchScreen(
             val articles = it.collectAsLazyPagingItems()
             ArticlesList(articles = articles, onClick = {
 
-                navigate(Route.DetailsScreen.route)
+                navigateToDetails(it)
             })
         }
     }
